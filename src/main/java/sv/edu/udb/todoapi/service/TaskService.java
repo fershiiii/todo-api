@@ -36,4 +36,12 @@ public class TaskService {
         task.ifPresent(t -> t.setCompleted(true));
         return task;
     }
+
+    public Task getTaskById(Long id) {
+        return tasks.stream()
+                .filter(task -> task.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
 }
