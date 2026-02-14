@@ -44,4 +44,16 @@ public class TaskService {
                 .orElse(null);
     }
 
+    public Optional<Task> update(Long id, Task updatedTask) {
+        return tasks.stream()
+                .filter(t -> t.getId().equals(id))
+                .findFirst()
+                .map(task -> {
+                    task.setTitle(updatedTask.getTitle());
+                    task.setDescription(updatedTask.getDescription());
+                    task.setCompleted(updatedTask.isCompleted());
+                    return task;
+                });
+    }
+
 }

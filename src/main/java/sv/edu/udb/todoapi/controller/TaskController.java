@@ -47,6 +47,15 @@ public class TaskController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // PUT /api/tasks/{id}
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody Task task) {
+        return taskService.update(id, task)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
     // DELETE /api/tasks/{id}
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
