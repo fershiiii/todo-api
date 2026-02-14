@@ -55,10 +55,6 @@ public class TaskController {
                 : ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/{id}")
-    public Task getTaskById(@PathVariable Long id) {
-        return taskService.getTaskById(id);
-    }
 
 }
 
