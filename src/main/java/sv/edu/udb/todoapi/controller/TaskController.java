@@ -19,17 +19,19 @@ public class TaskController {
 
     // GET /api/tasks
     @GetMapping
-    public List<Task> getAll() {
-        return taskService.getAll();
+    public ResponseEntity<List<Task>> getAll() {
+        return ResponseEntity.ok(taskService.getAll());
     }
+
 
     // POST /api/tasks
     @PostMapping
-    public Task create(@RequestBody Task task) {
-        // si no mandan completed, por defecto false
+    public ResponseEntity<Task> create(@RequestBody Task task) {
         task.setCompleted(false);
-        return taskService.create(task);
+        Task created = taskService.create(task);
+        return ResponseEntity.status(201).body(created);
     }
+
 
     // GET /api/tasks/{id}
     @GetMapping("/{id}")
